@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 class Program{
     static PersonList personList;
-    
     public static void Main(string[] args){
+        Console.Clear();
+        Program.personList = new PersonList();
         Menu();
+        
     }
 
     public static void Menu(){
@@ -16,7 +18,7 @@ class Program{
     }
 
     static void PrintMenu(){
-        Console.WriteLine(" Welcome into the Idia camp 2022 ");
+        Console.WriteLine(" Welcome into the Kmutt shuttle booking program ");
         Console.WriteLine("------------- What do you want to do? -------------");
         Console.WriteLine(" 1.Registration");
         Console.WriteLine(" 2.Login");
@@ -45,6 +47,7 @@ class Program{
             case 4 : break;
             default : {
                 Console.WriteLine("Sorry please selected menu again.");
+                Console.ReadLine();
                 Menu();
                 break;
                 }
@@ -87,6 +90,7 @@ class Program{
             }
             default : {
                 Console.WriteLine(" Sorry please selected type again.");
+                Console.ReadLine();
                 RegistrationMenu();
                 break;
             }
@@ -94,6 +98,7 @@ class Program{
     }
 
     static void PersonnelRegistration(){
+        Console.Clear();
         Console.WriteLine(" Personnel register ");
         Console.WriteLine("---------------------------------------------------");
         string title = SelectedTitle();
@@ -104,6 +109,7 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("This name has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             PersonnelRegistration();
             return;
         }
@@ -114,6 +120,7 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("This email has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             PersonnelRegistration();
             return;
         }
@@ -125,6 +132,7 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("registration error the username or password is invalid. please try again. ");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             PersonnelRegistration();
             return;
         }
@@ -132,9 +140,12 @@ class Program{
 
         Personnel personnel = new Personnel(title, name, surname, email, username, password);
         Program.personList.AddPerson(personnel);
+
+        SucceedRegister1();
     }
 
     static void StudentRegistration(){
+        Console.Clear();
         Console.WriteLine(" Student register ");
         Console.WriteLine("---------------------------------------------------");
         string title = SelectedTitle();
@@ -145,6 +156,7 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("This name has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             StudentRegistration();
             return;
         }
@@ -155,6 +167,7 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("This email has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             StudentRegistration();
             return;
         }
@@ -166,12 +179,84 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("registration error the username or password is invalid. please try again. ");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             StudentRegistration();
             return;
         }
 
         Student student = new Student(title, name, surname, email, username, password);
         Program.personList.AddPerson(student);
+
+        SucceedRegister2();
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    //---------------------------------------------------Succeed Register-----------------------------------------------
+    static void SucceedRegister1(){
+        Console.Clear();
+        SucceedRegisterMenu();
+        SelectedSucceedRegistrationMenu1();
+    }
+
+    static void SucceedRegister2(){
+        Console.Clear();
+        SucceedRegisterMenu();
+        SelectedSucceedRegistrationMenu2();
+    }
+
+    static void SucceedRegisterMenu(){
+        Console.WriteLine(" Successful registration. ");
+        Console.WriteLine("------------- What do you want to do? -------------");
+        Console.WriteLine(" 1.Stay login");
+        Console.WriteLine(" 2.Log out");
+        Console.WriteLine(" 3.Exit");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void SelectedSucceedRegistrationMenu1(){
+        Console.Write(" Please input selected Menu : ");
+
+        int sr = int.Parse(Console.ReadLine());
+        switch (sr){
+            case 1 : {
+                PersonnelScreen();
+                break;
+            }
+            case 2 : {
+                Menu();
+                break;
+            }
+            case 3 : break;
+            default : {
+                Console.WriteLine(" Sorry please selected Menu again.");
+                Console.ReadLine();
+                SelectedSucceedRegistrationMenu1();
+                break;
+            }
+        }        
+    }
+
+    static void SelectedSucceedRegistrationMenu2(){
+        Console.Write(" Please input selected Menu : ");
+
+        int sr = int.Parse(Console.ReadLine());
+        switch (sr){
+            case 1 : {
+                StudentScreen();
+                break;
+            }
+            case 2 : {
+                Menu();
+                break;
+            }
+            case 3 : break;
+            default : {
+                Console.WriteLine(" Sorry please selected Menu again.");
+                Console.ReadLine();
+                SelectedSucceedRegistrationMenu2();
+                break;
+            }
+        }        
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -198,6 +283,7 @@ class Program{
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine("The username or password is invalid. please try again.");
             Console.WriteLine("---------------------------------------------------");
+            Console.ReadLine();
             return;
         }
     }
@@ -206,32 +292,63 @@ class Program{
     //---------------------------------------------------Succeed Login----------------------------------------------------
     static void PersonnelScreen(){
         Console.Clear();
-        Console.WriteLine("Welcome.");
+        SucceedLoginMenu();
+        SelectedSucceedLoginMenu();
     }
 
     static void StudentScreen(){
         Console.Clear();
+        SucceedLoginMenu();
+        SelectedSucceedLoginMenu();
+    }
+
+    static void SucceedLoginMenu(){
         Console.WriteLine("Welcome.");
+        Console.WriteLine("------------- What do you want to do? -------------");
+        Console.WriteLine(" 1.Log out");
+        Console.WriteLine(" 2.Exit");
+        Console.WriteLine("---------------------------------------------------");
+    }
+
+    static void SelectedSucceedLoginMenu(){
+        Console.Write(" Please input selected Menu : ");
+
+        int sr = int.Parse(Console.ReadLine());
+        switch (sr){
+            case 1 : {
+                Menu();
+                break;
+            }
+            case 2 : break;
+            default : {
+                Console.WriteLine(" Sorry please selected Menu again.");
+                Console.ReadLine();
+                SelectedSucceedLoginMenu();
+                break;
+            }
+        }        
     }
     //------------------------------------------------------------------------------------------------------------------
 
     //---------------------------------------------------Guest Login----------------------------------------------------
     static void GuestLoginMenu(){
         Console.Clear();
-        PrintGuestLoginMenu();
-    }
-
-    static void PrintGuestLoginMenu(){
-
+        string title = SelectedTitle();
+        string name = InputName();
+        string surname = InputSurName();
+        string email = InputEmail();
+        Console.Clear();
+        SucceedLoginMenu();
+        SelectedSucceedLoginMenu();
     }
     //------------------------------------------------------------------------------------------------------------------
 
     //---------------------------------------------------Input Data-----------------------------------------------------
     static string SelectedTitle(){
-        Console.Write(" Please select your title : ");
+        Console.Write(" Please select your title ");
         Console.Write(" 1. Mr.");
         Console.Write(" 2. Ms.");
-        Console.Write(" 3. Mrs.");
+        Console.Write(" 3. Mrs. :");
 
         int t = int.Parse(Console.ReadLine());
         switch(t){
