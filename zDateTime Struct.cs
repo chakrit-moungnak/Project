@@ -4,6 +4,7 @@ class today{
     private int This_year;
     private int This_hour;
     private int This_minute;
+    private int This_second;
     private void set_date_today(){
         DateTime Today_date = DateTime.Now;
         this.This_day = Today_date.Day;
@@ -26,6 +27,7 @@ class today{
         DateTime Today_date = DateTime.Now;
         this.This_hour = Today_date.Hour;
         this.This_minute = Today_date.Minute;
+        this.This_second = Today_date.Second;
     }
     public int get_this_hour(){
         set_time_now();
@@ -34,5 +36,9 @@ class today{
     public int get_this_minute(){
         set_time_now();
         return This_minute;
+    }
+    public int get_this_second(){
+        set_time_now();
+        return This_second;
     }
 }

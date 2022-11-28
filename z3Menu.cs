@@ -3,6 +3,7 @@ class Menu_all{
     static Check_table check_Table = new Check_table();
     static All_login all_Login = new All_login();
     static PersonList personList = new PersonList();
+    static Driver_ploblem driver_Ploblem = new Driver_ploblem();
     private int Menu_check=0;
 
     public void set_menucheck(){
@@ -35,6 +36,8 @@ class Menu_all{
                 release_bus_menu(ticket);
                 break;
             case 3:
+                Console.Clear();
+                Input_Driver_problem(ticket);
                 break;
             case 4:
                 Console.Clear();
@@ -88,10 +91,16 @@ class Menu_all{
         {
             case 1:
                 Console.Clear();
+                if (driver_Ploblem.get_problem_check() == true){
+                    Show_Driver_ploblem(ticket);
+                }
                 check_Table.Table_Ticket_menu(ticket);
                 break;
             case 2:
                 Console.Clear();        
+                if (driver_Ploblem.get_problem_check() == true){
+                    Show_Driver_ploblem(ticket);
+                }
                 booking_Menu.Book_Menu(ticket);
                 break;
             case 3:
@@ -106,4 +115,39 @@ class Menu_all{
                 break;
         }
     }
+    public void Input_Driver_problem(Get_Set_ticket ticket){
+        Console.WriteLine("______________________________");
+        Console.WriteLine("Input 1 To report a problem");
+        Console.WriteLine("Input 2 Cancel Report");
+        Console.WriteLine("Input any thing to Back");
+        Console.WriteLine("______________________________");
+        Console.WriteLine("Input Your Menu");
+        set_menucheck();
+        switch(Menu_check) 
+        {
+            case 1:
+                driver_Ploblem.set_Driver_ploblem();
+                Console.WriteLine("We will announcement to user now");
+                Console.ReadLine();
+                PrintAdminMenu(ticket);
+                break;
+            case 2:
+                driver_Ploblem.re_problem_check();
+                Console.WriteLine("Problem is gone");
+                Console.ReadLine();
+                PrintAdminMenu(ticket);
+                break;
+        }
+        Console.Clear();
+        PrintAdminMenu(ticket);
+    }
+
+    public void Show_Driver_ploblem(Get_Set_ticket ticket){
+        Console.WriteLine("______________________________");
+        Console.WriteLine("NOW HAVE A PROBLEM {0}",driver_Ploblem.get_Driver_ploblem());
+        Console.WriteLine("At {0}",driver_Ploblem.get_time_driver_problem());
+        Console.WriteLine("______________________________");
+        Console.ReadLine();
+        PrintMainMenu(ticket);
+    }   
 }

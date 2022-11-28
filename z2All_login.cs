@@ -21,7 +21,8 @@ class All_login{
     static void SelectedMenu(){
         Console.Write(" Please input selected menu : ");
 
-        int m = int.Parse(Console.ReadLine());
+        int m;
+        int.TryParse(Console.ReadLine(),out m);
         switch (m){
             case 1 : {
                 RegistrationMenu();
@@ -63,7 +64,8 @@ class All_login{
     static void SelectedRegistrationMenu(){
         Console.Write(" Please input selected type : ");
 
-        int r = int.Parse(Console.ReadLine());
+        int r;
+        int.TryParse(Console.ReadLine(),out r);
         switch (r){
             case 1 : {
                 PersonnelRegistration();
@@ -204,7 +206,8 @@ class All_login{
     static void SelectedSucceedRegistrationMenu1(){
         Console.Write(" Please input selected Menu : ");
 
-        int sr = int.Parse(Console.ReadLine());
+        int sr;
+        int.TryParse(Console.ReadLine(),out sr);
         switch (sr){
             case 1 : {
                 Console.Clear();
@@ -228,7 +231,8 @@ class All_login{
     static void SelectedSucceedRegistrationMenu2(){
         Console.Write(" Please input selected Menu : ");
 
-        int sr = int.Parse(Console.ReadLine());
+        int sr;
+        int.TryParse(Console.ReadLine(),out sr);
         switch (sr){
             case 1 : {
                 StudentScreen();
@@ -310,7 +314,8 @@ class All_login{
         Console.Write(" 2. Ms.");
         Console.Write(" 3. Mrs. :");
 
-        int t = int.Parse(Console.ReadLine());
+        int t;
+        int.TryParse(Console.ReadLine(),out t);
         switch(t){
             case 1 : return "Mr.";
             case 2 : return "Ms.";

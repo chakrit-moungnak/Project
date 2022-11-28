@@ -1,6 +1,7 @@
 class Booking_Menu{
     static Menu_all menu_All = new Menu_all();
     private string booking_check;
+    Bus_station bus_Station = new Bus_station();
     private void set_booking_check(){
         this.booking_check = Console.ReadLine();
     }
@@ -116,6 +117,9 @@ class Booking_Menu{
         set_booking_check();
         switch(booking_check){
             case "Y":
+                bus_Station.set_start_Mod_To_Khun();
+                bus_Station.next_bus_start_mod_to_kun();
+                Console.ReadLine();
                 ticket.reset_ticket_Mod_To_Khun();
                 break;
             case "y":
@@ -137,6 +141,9 @@ class Booking_Menu{
         set_booking_check();
         switch(booking_check){
             case "Y":
+                bus_Station.set_start_Khun_To_Mod();
+                bus_Station.next_bus_start_kun_to_mod();
+                Console.ReadLine();
                 ticket.reset_ticket_Khun_To_Mod();
                 break;
             case "y":

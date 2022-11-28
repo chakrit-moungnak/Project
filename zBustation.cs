@@ -1,60 +1,73 @@
 class Bus_station{
-    private bool bus_start = true;
-    private double bus_start_now;
-    public void set_start(bool start){
-        if (start == true){
-            this.bus_start = true;
-        }
-        else if (start == false){
-            this.bus_start = false;
-        }
+    private bool bus_start_Mod_To_Khun = false;
+    private bool bus_start_Khun_To_Mod = false;
+    private double Bus_start_at_Mod_Kun;
+    private double Bus_start_at_Kun_Mod;
+
+    private string bus_start_at_Mod_Kun;
+    private string bus_start_at_Kun_Mod;
+    public void set_start_Mod_To_Khun(){
+        this.bus_start_Mod_To_Khun = true;
     }
-    public double get_start_now(){
-        return bus_start_now;
+    public void set_start_Khun_To_Mod(){
+        this.bus_start_Khun_To_Mod = true;
     }
-    private void bus_start_time(){
-        if(this.bus_start == true){
+    public string get_start_now_Mod_Kun(){
+        return this.bus_start_at_Mod_Kun;
+    }
+    public string get_start_now_Kun_Mod(){
+        return this.bus_start_at_Kun_Mod;
+    }
+    private void bus_start_time_Mod_To_Khun(){
+        if(this.bus_start_Mod_To_Khun == true){
             today today = new today();
             int bus_start_hour = today.get_this_hour();
             int bus_start_minute = today.get_this_minute();
-            this.bus_start_now = bus_start_hour*100+bus_start_minute;
+            this.Bus_start_at_Mod_Kun = bus_start_hour*100+bus_start_minute;
             string bus_start_at = (bus_start_hour+"."+bus_start_minute);
-            if (bus_start_minute > bus_start_minute+10&&bus_start_minute <= bus_start_minute+20){
-                Console.WriteLine("Bus is Full");
-                Console.WriteLine("Bus is start at = "+bus_start_at);
-            }
-            else Console.WriteLine("Bus is start at = "+bus_start_at);
         }
         else {
-            Console.WriteLine("Bus is not start");
+            Console.WriteLine("Bus is out");
+        }
+    }
+    private void bus_start_time_Khun_To_Mod(){
+        if(this.bus_start_Khun_To_Mod == true){
+            today today = new today();
+            int bus_start_hour = today.get_this_hour();
+            int bus_start_minute = today.get_this_minute();
+            this.Bus_start_at_Kun_Mod = bus_start_hour*100+bus_start_minute;
+            string bus_start_at = (bus_start_hour+"."+bus_start_minute);
+        }
+        else {
+            Console.WriteLine("Bus is out");
         }
     }
     public void next_bus_start_mod_to_kun(){
-        bus_start_time();
+        bus_start_time_Mod_To_Khun();
         bus_schedule bus = new bus_schedule();
         List<double> bustime = bus.bus_schedule_Mod_To_Kun();
         int i=0;
         foreach(double bus_time in bustime){
-            if (bus_start_now<bus_time*100){
-                Console.WriteLine("Next start is {0}",bustime[i]);
+            if (Bus_start_at_Mod_Kun<bus_time*100){
+                Console.WriteLine("Next start is {0:F2}",bustime[i]);
                 break;
             }
         i++;
         }
-        this.bus_start = false;
+        this.bus_start_Mod_To_Khun = false;
     }
     public void next_bus_start_kun_to_mod(){
-        bus_start_time();
+        bus_start_time_Khun_To_Mod();
         bus_schedule bus = new bus_schedule();
         List<double> bustime = bus.bus_schedule_Kun_To_Mod();
         int i=0;
         foreach(double bus_time in bustime){
-            if (bus_start_now<bus_time*100){
-                Console.WriteLine("Next start is {0}",bustime[i]);
+            if (Bus_start_at_Kun_Mod<bus_time*100){
+                Console.WriteLine("Next start is {0:F2}",bustime[i]);
                 break;
             }
         i++;
         }
-        this.bus_start = false;
+        this.bus_start_Khun_To_Mod = false;
     }
 }

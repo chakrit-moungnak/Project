@@ -1,4 +1,4 @@
-class time_trans{
+/*class time_trans{
     private bool bus_end = true;
     private double bus_end_time;
     private double time_tran;
@@ -33,4 +33,4 @@ class time_trans{
     public double get_time_trans(){
         return time_tran;
     }
-}
+}*/
