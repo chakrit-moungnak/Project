@@ -3,11 +3,10 @@ using System;
 class PersonList
 {
     private List<Person> personlist;
-
+    private bool admin = false;
     public PersonList(){
         this.personlist = new List<Person>();
     }
-
     public void AddPerson(Person person){
         this.personlist.Add(person);
     }
@@ -38,15 +37,23 @@ class PersonList
         }
         return false;
     }
-
-    public bool CheckedStatus(){
+    public void reset_status_admin(){
+        this.admin = false;
+    }
+    public bool get_admin(){
+        return this.admin;
+    }
+    public void set_admin(string username,string password){
         foreach(Person person in this.personlist){
-            if(person is Personnel){
-                return true;
+            if(username == person.GetUsername()&&password == person.GetPassword()){
+                if(person.get_admin_confirm() == "y"){
+                    this.admin =  true;
+                }
+                else this.admin = false;
             }
         }
-        return false;
     }
+
 }
 
     

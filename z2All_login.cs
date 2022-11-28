@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-
-class Program{
-    static PersonList personList;
-    public static void Main(string[] args){
-        Console.Clear();
-        Program.personList = new PersonList();
+class All_login{
+    static PersonList personList = new PersonList();
+    static Menu_all menu_All = new Menu_all();
+    public void start_main_menu(){
         Menu();
-        
     }
-
-    public static void Menu(){
+    private static void Menu(){
         Console.Clear();
         PrintMenu();
         SelectedMenu();
-
     }
-
     static void PrintMenu(){
         Console.WriteLine(" Welcome into the Kmutt shuttle booking program ");
         Console.WriteLine("------------- What do you want to do? -------------");
@@ -26,7 +18,6 @@ class Program{
         Console.WriteLine(" 4.Exit");
         Console.WriteLine("---------------------------------------------------");
     }
-
     static void SelectedMenu(){
         Console.Write(" Please input selected menu : ");
 
@@ -53,8 +44,6 @@ class Program{
                 }
             }
     }
-
-
     //---------------------------------------------------Registration---------------------------------------------------
     static void RegistrationMenu(){
         Console.Clear();
@@ -65,8 +54,8 @@ class Program{
     static void PrintRegistrationMenu(){
         Console.WriteLine(" Please select register type");
         Console.WriteLine("---------------------------------------------------");
-        Console.WriteLine(" 1.Personnel");
-        Console.WriteLine(" 2.Student");
+        Console.WriteLine(" 1.Admin");
+        Console.WriteLine(" 2.User");
         Console.WriteLine(" 3.Back");
         Console.WriteLine("---------------------------------------------------");
     }
@@ -136,10 +125,9 @@ class Program{
             PersonnelRegistration();
             return;
         }
-
-
-        Personnel personnel = new Personnel(title, name, surname, email, username, password);
-        Program.personList.AddPerson(personnel);
+        string admin_confirm = "y";
+        Admin admin = new Admin(title, name, surname, email, username, password,admin_confirm);
+        personList.AddPerson(admin);
 
         SucceedRegister1();
     }
@@ -183,9 +171,9 @@ class Program{
             StudentRegistration();
             return;
         }
-
-        Student student = new Student(title, name, surname, email, username, password);
-        Program.personList.AddPerson(student);
+        string user_confirm = "x";
+        Student student = new Student(title, name, surname, email, username, password,user_confirm);
+        personList.AddPerson(student);
 
         SucceedRegister2();
     }
@@ -219,7 +207,8 @@ class Program{
         int sr = int.Parse(Console.ReadLine());
         switch (sr){
             case 1 : {
-                PersonnelScreen();
+                Console.Clear();
+                menu_All.PrintAdminMenu(ticket);
                 break;
             }
             case 2 : {
@@ -270,9 +259,9 @@ class Program{
     static void Login(){
         string username = InputUserName();
         string password = InputPassword();
-
+        personList.set_admin(username, password);
         if(personList.CheckedLogin(username, password)){
-            if(personList.CheckedStatus()){
+            if(personList.get_admin() == true){
                 PersonnelScreen();
             }
             else{
@@ -293,43 +282,14 @@ class Program{
     //---------------------------------------------------Succeed Login----------------------------------------------------
     static void PersonnelScreen(){
         Console.Clear();
-        SucceedLoginMenu();
-        SelectedSucceedLoginMenu();
+        menu_All.PrintAdminMenu(ticket);
     }
 
     static void StudentScreen(){
         Console.Clear();
-        SucceedLoginMenu();
-        SelectedSucceedLoginMenu();
+        menu_All.PrintMainMenu(ticket);
     }
-
-    static void SucceedLoginMenu(){
-        Console.WriteLine("Welcome.");
-        Console.WriteLine("------------- What do you want to do? -------------");
-        Console.WriteLine(" 1.Log out");
-        Console.WriteLine(" 2.Exit");
-        Console.WriteLine("---------------------------------------------------");
-    }
-
-    static void SelectedSucceedLoginMenu(){
-        Console.Write(" Please input selected Menu : ");
-
-        int sr = int.Parse(Console.ReadLine());
-        switch (sr){
-            case 1 : {
-                Menu();
-                break;
-            }
-            case 2 : break;
-            default : {
-                Console.WriteLine(" Sorry please selected Menu again.");
-                Console.ReadLine();
-                SelectedSucceedLoginMenu();
-                break;
-            }
-        }        
-    }
-    //------------------------------------------------------------------------------------------------------------------
+    static Get_Set_ticket ticket = new Get_Set_ticket();
 
     //---------------------------------------------------Guest Login----------------------------------------------------
     static void GuestLoginMenu(){
@@ -339,8 +299,7 @@ class Program{
         string surname = InputSurName();
         string email = InputEmail();
         Console.Clear();
-        SucceedLoginMenu();
-        SelectedSucceedLoginMenu();
+        menu_All.PrintMainMenu(ticket);
     }
     //------------------------------------------------------------------------------------------------------------------
 
@@ -387,6 +346,8 @@ class Program{
         Console.Write(" Please input your password : ");
         return Console.ReadLine();
     }
-    //------------------------------------------------------------------------------------------------------------------
+    static string Input_Admin(){
+        return Console.ReadLine();
+    }
+    //---------------------------------------------------------------------------------------------------------------
 }
-
