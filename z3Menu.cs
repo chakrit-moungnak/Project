@@ -28,7 +28,7 @@ class Menu_all{
         {
             case 1:
                 Console.Clear();
-                check_Table.Table_Ticket_menu(ticket);
+                check_Table.Table_Ticket_menu_Admin(ticket);
                 break;
             case 2:
                 Console.Clear();
