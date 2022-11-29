@@ -1,12 +1,11 @@
 class Booking_Menu{
     static Menu_all menu_All = new Menu_all();
     private string booking_check;
-    Bus_station bus_Station = new Bus_station();
     private void set_booking_check(){
         this.booking_check = Console.ReadLine();
     }
     //----------------------------------------------------------------------------------
-    public void Book_Menu(Get_Set_ticket ticket){
+    public void Book_Menu(Get_Set_ticket ticket,Bus_station bus_Station){
         Console.WriteLine("______________________________");
         Console.WriteLine("*-Time*");              //ตารางเวลา----
         Console.WriteLine("*--------Book_Ticket---------*");
@@ -20,26 +19,26 @@ class Booking_Menu{
         {
             case "1":
                 Console.Clear();
-                Menu_Mod_To_Khun(ticket);
+                Menu_Mod_To_Khun(ticket,bus_Station);
                 break;
             case "2":
                 Console.Clear();
-                Menu_Khun_To_Mod(ticket);
+                Menu_Khun_To_Mod(ticket,bus_Station);
                 break;
             case "3":
                 Console.Clear();
-                menu_All.PrintMainMenu(ticket);
+                menu_All.PrintMainMenu(ticket,bus_Station);
                 break;
             default: 
                 Console.WriteLine("You in put wrong. \nPlease Try Again");
                 Console.ReadLine();
                 Console.Clear();
-                Book_Menu(ticket);
+                Book_Menu(ticket,bus_Station);
                 break;
         }
     }
     //--------------------------------------------------------------------------------
-    public void Menu_Khun_To_Mod(Get_Set_ticket ticket){
+    public void Menu_Khun_To_Mod(Get_Set_ticket ticket,Bus_station bus_Station){
         Console.Clear();      
         Console.WriteLine("______________________________");
         Console.WriteLine("*Time----*");
@@ -47,7 +46,7 @@ class Booking_Menu{
         Console.WriteLine("*--------Book_Ticket----------*");
         Console.WriteLine("*--KMUTT --> Bang Khun Thian--*");
         Console.WriteLine("*Get Ticket please input [Y]");
-        Console.WriteLine("*Back please input [?]*");
+        Console.WriteLine("*Enter To Get Back*");
         Console.WriteLine("______________________________");
         Console.Write("Please in put here : ");
         ticket.set_Khun_To_Mod();
@@ -71,9 +70,9 @@ class Booking_Menu{
                 break;
         }
     Console.Clear();
-    Book_Menu(ticket);
+    Book_Menu(ticket,bus_Station);
     }
-    public void Menu_Mod_To_Khun(Get_Set_ticket ticket){
+    public void Menu_Mod_To_Khun(Get_Set_ticket ticket,Bus_station bus_Station){
         Console.Clear();      
         Console.WriteLine("______________________________");
         Console.WriteLine("*Time----*");
@@ -81,7 +80,7 @@ class Booking_Menu{
         Console.WriteLine("*--------Book_Ticket----------*");
         Console.WriteLine("*--KMUTT --> Bang Khun Thian--*");
         Console.WriteLine("*Get Ticket please input [Y]");
-        Console.WriteLine("*Back please input [?]*");
+        Console.WriteLine("*Enter To Get Back*");
         Console.WriteLine("______________________________");
         Console.Write("Please in put here : ");
         ticket.set_Mod_To_Khun();
@@ -105,54 +104,62 @@ class Booking_Menu{
                 break;
         }
     Console.Clear();
-    Book_Menu(ticket);
+    Book_Menu(ticket,bus_Station);
     }
 
-    public void Admin_Bus_Menu_Mod_To_Khun(Get_Set_ticket ticket){
+    public void Admin_Bus_Menu_Mod_To_Khun(Get_Set_ticket ticket,Bus_station bus_Station){
         Console.WriteLine("______________________________");
         Console.WriteLine("Release bus Input = Y");
-        Console.WriteLine("back input anything");
+        Console.WriteLine("Enter to Back");
         Console.WriteLine("______________________________");
+        Console.WriteLine("Input your menu");
         ticket.set_Mod_To_Khun();
         set_booking_check();
         switch(booking_check){
             case "Y":
-                bus_Station.set_start_Mod_To_Khun();
-                bus_Station.next_bus_start_mod_to_kun();
+                bus_Station.set_Time_modkun();
+                Console.WriteLine("Bus is start at {0:F2}",bus_Station.get_start_now_Mod_Kun());
                 Console.ReadLine();
                 ticket.reset_ticket_Mod_To_Khun();
                 break;
             case "y":
+                bus_Station.set_Time_modkun();
+                Console.WriteLine("Bus is start at {0:F2}",bus_Station.get_start_now_Mod_Kun());
+                Console.ReadLine();
                 ticket.reset_ticket_Mod_To_Khun();
                 break;
             default : 
                 break;
         }
     Console.Clear();
-    menu_All.PrintAdminMenu(ticket);
+    menu_All.PrintAdminMenu(ticket,bus_Station);
     }
 
-    public void Admin_Bus_Menu_Khun_To_Mod(Get_Set_ticket ticket){
+    public void Admin_Bus_Menu_Khun_To_Mod(Get_Set_ticket ticket,Bus_station bus_Station){
         Console.WriteLine("______________________________");
         Console.WriteLine("Release bus Input = Y");
-        Console.WriteLine("back input anything");
+        Console.WriteLine("Enter to Back");
         Console.WriteLine("______________________________");
+        Console.WriteLine("Input your menu");
         ticket.set_Khun_To_Mod();
         set_booking_check();
         switch(booking_check){
             case "Y":
-                bus_Station.set_start_Khun_To_Mod();
-                bus_Station.next_bus_start_kun_to_mod();
+                bus_Station.set_Time_kunmod();
+                Console.WriteLine("Bus is start at {0:F2}",bus_Station.get_start_now_Kun_Mod());
                 Console.ReadLine();
                 ticket.reset_ticket_Khun_To_Mod();
                 break;
             case "y":
+                bus_Station.set_Time_kunmod();
+                Console.WriteLine("Bus is start at {0:F2}",bus_Station.get_start_now_Kun_Mod());
+                Console.ReadLine();
                 ticket.reset_ticket_Khun_To_Mod();
                 break;
             default : 
                 break;
         }
     Console.Clear();
-    menu_All.PrintAdminMenu(ticket);
+    menu_All.PrintAdminMenu(ticket,bus_Station);
     }
 }

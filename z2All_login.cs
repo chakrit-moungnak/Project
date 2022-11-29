@@ -1,6 +1,8 @@
 class All_login{
     static PersonList personList = new PersonList();
     static Menu_all menu_All = new Menu_all();
+    static Get_Set_ticket ticket = new Get_Set_ticket();
+    static Bus_station bus_Station = new Bus_station();
     public void start_main_menu(){
         Menu();
     }
@@ -36,7 +38,13 @@ class All_login{
                 GuestLoginMenu();
                 break;
                 }
-            case 4 : break;
+            case 4 : 
+                Console.Clear();
+                Console.WriteLine("__________________________________");
+                Console.WriteLine("Thank You to use my Program \n See you next time");
+                Console.WriteLine("__________________________________");   
+                Console.ReadLine(); 
+                break;            
             default : {
                 Console.WriteLine("Sorry please selected menu again.");
                 Console.ReadLine();
@@ -211,7 +219,7 @@ class All_login{
         switch (sr){
             case 1 : {
                 Console.Clear();
-                menu_All.PrintAdminMenu(ticket);
+                menu_All.PrintAdminMenu(ticket,bus_Station);
                 break;
             }
             case 2 : {
@@ -286,14 +294,13 @@ class All_login{
     //---------------------------------------------------Succeed Login----------------------------------------------------
     static void PersonnelScreen(){
         Console.Clear();
-        menu_All.PrintAdminMenu(ticket);
+        menu_All.PrintAdminMenu(ticket,bus_Station);
     }
 
     static void StudentScreen(){
         Console.Clear();
-        menu_All.PrintMainMenu(ticket);
+        menu_All.PrintMainMenu(ticket,bus_Station);
     }
-    static Get_Set_ticket ticket = new Get_Set_ticket();
 
     //---------------------------------------------------Guest Login----------------------------------------------------
     static void GuestLoginMenu(){
@@ -303,7 +310,7 @@ class All_login{
         string surname = InputSurName();
         string email = InputEmail();
         Console.Clear();
-        menu_All.PrintMainMenu(ticket);
+        menu_All.PrintMainMenu(ticket,bus_Station);
     }
     //------------------------------------------------------------------------------------------------------------------
 
