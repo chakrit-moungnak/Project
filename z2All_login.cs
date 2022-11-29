@@ -76,11 +76,11 @@ class All_login{
         int.TryParse(Console.ReadLine(),out r);
         switch (r){
             case 1 : {
-                PersonnelRegistration();
+                AdminRegistration();
                 break;
             }
             case 2 : {
-                StudentRegistration();
+                UserRegistration();
                 break;
             }
             case 3 : {
@@ -96,7 +96,7 @@ class All_login{
         }
     }
 
-    static void PersonnelRegistration(){
+    static void AdminRegistration(){
         Console.Clear();
         Console.WriteLine(" Personnel register ");
         Console.WriteLine("---------------------------------------------------");
@@ -109,7 +109,7 @@ class All_login{
             Console.WriteLine("This name has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
             Console.ReadLine();
-            PersonnelRegistration();
+            AdminRegistration();
             return;
         }
 
@@ -120,7 +120,7 @@ class All_login{
             Console.WriteLine("This email has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
             Console.ReadLine();
-            PersonnelRegistration();
+            AdminRegistration();
             return;
         }
 
@@ -132,7 +132,7 @@ class All_login{
             Console.WriteLine("registration error the username or password is invalid. please try again. ");
             Console.WriteLine("---------------------------------------------------");
             Console.ReadLine();
-            PersonnelRegistration();
+            AdminRegistration();
             return;
         }
         string admin_confirm = "y";
@@ -142,7 +142,7 @@ class All_login{
         SucceedRegister1();
     }
 
-    static void StudentRegistration(){
+    static void UserRegistration(){
         Console.Clear();
         Console.WriteLine(" Student register ");
         Console.WriteLine("---------------------------------------------------");
@@ -155,7 +155,7 @@ class All_login{
             Console.WriteLine("This name has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
             Console.ReadLine();
-            StudentRegistration();
+            UserRegistration();
             return;
         }
 
@@ -166,7 +166,7 @@ class All_login{
             Console.WriteLine("This email has already registed. please try again. ");
             Console.WriteLine("---------------------------------------------------");
             Console.ReadLine();
-            StudentRegistration();
+            UserRegistration();
             return;
         }
 
@@ -178,12 +178,12 @@ class All_login{
             Console.WriteLine("registration error the username or password is invalid. please try again. ");
             Console.WriteLine("---------------------------------------------------");
             Console.ReadLine();
-            StudentRegistration();
+            UserRegistration();
             return;
         }
         string user_confirm = "x";
-        Student student = new Student(title, name, surname, email, username, password,user_confirm);
-        personList.AddPerson(student);
+        User user = new User(title, name, surname, email, username, password,user_confirm);
+        personList.AddPerson(user);
 
         SucceedRegister2();
     }
@@ -243,7 +243,7 @@ class All_login{
         int.TryParse(Console.ReadLine(),out sr);
         switch (sr){
             case 1 : {
-                StudentScreen();
+                UserScreen();
                 break;
             }
             case 2 : {
@@ -274,10 +274,10 @@ class All_login{
         personList.set_admin(username, password);
         if(personList.CheckedLogin(username, password)){
             if(personList.get_admin() == true){
-                PersonnelScreen();
+                AdminScreen();
             }
             else{
-                StudentScreen();
+                UserScreen();
             }
         }
         else{
@@ -292,12 +292,12 @@ class All_login{
     //------------------------------------------------------------------------------------------------------------------
 
     //---------------------------------------------------Succeed Login----------------------------------------------------
-    static void PersonnelScreen(){
+    static void AdminScreen(){
         Console.Clear();
         menu_All.PrintAdminMenu(ticket,bus_Station);
     }
 
-    static void StudentScreen(){
+    static void UserScreen(){
         Console.Clear();
         menu_All.PrintMainMenu(ticket,bus_Station);
     }
