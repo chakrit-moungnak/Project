@@ -46,7 +46,7 @@ class Get_Set_ticket{
                 Console.WriteLine("You cant cancel anymore");
                 Console.WriteLine("Enter to next");
                 Console.ReadLine();
-                this.ticket_Mod_To_Khun++;
+                this.ticket_Khun_To_Mod++;
             }
         }   
     }
