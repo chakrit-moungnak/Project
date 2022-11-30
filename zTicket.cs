@@ -14,6 +14,8 @@ class Get_Set_ticket{
             if (ticket_Mod_To_Khun>25){
                 Console.WriteLine("you cannot get ticket");
                 Console.WriteLine("Ticket is out");
+                Console.WriteLine("Enter to next");
+                Console.ReadLine();
                 ticket_Mod_To_Khun--;
             }
         }
@@ -22,6 +24,8 @@ class Get_Set_ticket{
             if (ticket_Khun_To_Mod>25){
                 Console.WriteLine("you cannot get ticket");
                 Console.WriteLine("Ticket is out");
+                Console.WriteLine("Enter to next");
+                Console.ReadLine();
                 ticket_Khun_To_Mod--;
             }
         }
@@ -31,6 +35,8 @@ class Get_Set_ticket{
             this.ticket_Mod_To_Khun--;
             if (ticket_Mod_To_Khun<=0){
                 Console.WriteLine("You cant cancel anymore");
+                Console.WriteLine("Enter to next");
+                Console.ReadLine();
                 this.ticket_Mod_To_Khun++;
             }
         }
@@ -38,6 +44,8 @@ class Get_Set_ticket{
             this.ticket_Khun_To_Mod++;
             if (ticket_Khun_To_Mod<=0){
                 Console.WriteLine("You cant cancel anymore");
+                Console.WriteLine("Enter to next");
+                Console.ReadLine();
                 this.ticket_Mod_To_Khun++;
             }
         }   
