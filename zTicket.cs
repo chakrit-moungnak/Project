@@ -41,7 +41,7 @@ class Get_Set_ticket{
             }
         }
         else {
-            this.ticket_Khun_To_Mod++;
+            this.ticket_Khun_To_Mod--;
             if (ticket_Khun_To_Mod<=0){
                 Console.WriteLine("You cant cancel anymore");
                 Console.WriteLine("Enter to next");
