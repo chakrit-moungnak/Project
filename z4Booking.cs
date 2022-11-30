@@ -46,6 +46,7 @@ class Booking_Menu{
         Console.WriteLine("*--------Book_Ticket----------*");
         Console.WriteLine("*--KMUTT --> Bang Khun Thian--*");
         Console.WriteLine("*Get Ticket please input [Y]");
+        Console.WriteLine("*Cancle Ticket please input [C]");
         Console.WriteLine("*Enter To Get Back*");
         Console.WriteLine("______________________________");
         Console.Write("Please in put here : ");
@@ -80,6 +81,7 @@ class Booking_Menu{
         Console.WriteLine("*--------Book_Ticket----------*");
         Console.WriteLine("*--KMUTT --> Bang Khun Thian--*");
         Console.WriteLine("*Get Ticket please input [Y]");
+        Console.WriteLine("*Cancle Ticket please input [C]");
         Console.WriteLine("*Enter To Get Back*");
         Console.WriteLine("______________________________");
         Console.Write("Please in put here : ");
