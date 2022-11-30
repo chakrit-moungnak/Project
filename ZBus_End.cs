@@ -56,7 +56,10 @@ class End_Report {
         Console.WriteLine("Bus is arrives at {0:F2}",this.Bus_End_at_Mod_Kun);
         if (time_modkun >= 60){
             time_modkun = time_modkun/60;
-            Console.WriteLine("Using time {0:F2} Hour",time_modkun);
+            if(time_modkun <= 3){
+            Console.WriteLine("Using time {0:F2} Hour",time_kunmod);
+            }
+            else Console.WriteLine("Bus is not start");
         }
         else Console.WriteLine("Using time {0} minute",Math.Floor(time_modkun));
         Console.WriteLine("________________________");
@@ -71,7 +74,10 @@ class End_Report {
         Console.WriteLine("Bus is arrives at {0:F2}",this.Bus_End_at_Kun_Mod);
         if (time_kunmod >= 60){
             time_kunmod = time_kunmod/60;
+            if(time_kunmod <= 3){
             Console.WriteLine("Using time {0:F2} Hour",time_kunmod);
+            }
+            else Console.WriteLine("Bus is not start");
         }
         else Console.WriteLine("Using time {0} minute",Math.Floor(time_kunmod));
         Console.WriteLine("________________________");
